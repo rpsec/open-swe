@@ -284,11 +284,15 @@ async function createToolsAndPrompt(
       anthropic: anthropicModelTools,
       openai: nonAnthropicModelTools,
       "google-genai": nonAnthropicModelTools,
+      openrouter: nonAnthropicModelTools,
+      ollama: nonAnthropicModelTools,
     },
     providerMessages: {
       anthropic: anthropicMessages,
       openai: nonAnthropicMessages,
       "google-genai": nonAnthropicMessages,
+      openrouter: nonAnthropicMessages,
+      ollama: nonAnthropicMessages,
     },
   };
 }

@@ -47,6 +47,8 @@ export const PROVIDER_FALLBACK_ORDER = [
   "openai",
   "anthropic",
   "google-genai",
+  "openrouter",
+  "ollama",
 ] as const;
 export type Provider = (typeof PROVIDER_FALLBACK_ORDER)[number];
 
@@ -82,6 +84,10 @@ const providerToApiKey = (
       return apiKeys.anthropicApiKey;
     case "google-genai":
       return apiKeys.googleApiKey;
+    case "openrouter":
+      return apiKeys.openRouterApiKey;
+    case "ollama":
+      return apiKeys.ollamaApiKey;
     default:
       throw new Error(`Unknown provider: ${providerName}`);
   }
@@ -182,6 +188,7 @@ export class ModelManager {
       modelProvider: provider,
       max_retries: MAX_RETRIES,
       ...(apiKey ? { apiKey } : {}),
+      ...(provider === "ollama" ? { baseUrl: "http://localhost:11434" } : {}),
       ...(thinkingModel && provider === "anthropic"
         ? {
             thinking: { budget_tokens: thinkingBudgetTokens, type: "enabled" },
@@ -398,6 +405,20 @@ export class ModelManager {
         [LLMTask.REVIEWER]: "gpt-5-codex",
         [LLMTask.ROUTER]: "gpt-5-nano",
         [LLMTask.SUMMARIZER]: "gpt-5-mini",
+      },
+      openrouter: {
+        [LLMTask.PLANNER]: "anthropic/claude-3-opus",
+        [LLMTask.PROGRAMMER]: "anthropic/claude-3-opus",
+        [LLMTask.REVIEWER]: "anthropic/claude-3-opus",
+        [LLMTask.ROUTER]: "anthropic/claude-3-haiku",
+        [LLMTask.SUMMARIZER]: "anthropic/claude-3-opus",
+      },
+      ollama: {
+        [LLMTask.PLANNER]: "llama3",
+        [LLMTask.PROGRAMMER]: "llama3",
+        [LLMTask.REVIEWER]: "llama3",
+        [LLMTask.ROUTER]: "llama3",
+        [LLMTask.SUMMARIZER]: "llama3",
       },
     };
 

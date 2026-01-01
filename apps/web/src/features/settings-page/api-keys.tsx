@@ -43,6 +43,12 @@ const API_KEY_DEFINITIONS = {
     { id: "anthropicApiKey", name: "Anthropic" },
     { id: "openaiApiKey", name: "OpenAI" },
     { id: "googleApiKey", name: "Google Gen AI" },
+    { id: "openRouterApiKey", name: "OpenRouter" },
+    {
+      id: "ollamaApiKey",
+      name: "Ollama",
+      description: "Not required for local Ollama installations",
+    },
   ],
   // infrastructure: [
   //   {

@@ -92,6 +92,18 @@ export const MODEL_OPTIONS = [
     label: "Gemini 2.5 Flash",
     value: "google-genai:gemini-2.5-flash",
   },
+  {
+    label: "OpenRouter - Anthropic - Claude 3 Opus",
+    value: "openrouter:anthropic/claude-3-opus",
+  },
+  {
+    label: "OpenRouter - Anthropic - Claude 3 Haiku",
+    value: "openrouter:anthropic/claude-3-haiku",
+  },
+  {
+    label: "Ollama - Llama 3",
+    value: "ollama:llama3",
+  },
 ];
 
 export const MODEL_OPTIONS_NO_THINKING = MODEL_OPTIONS.filter(
